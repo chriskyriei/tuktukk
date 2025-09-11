@@ -1,0 +1,260 @@
+:root{
+  --bg1:#fffaf6;
+  --ink:#111;
+  --muted:#666;
+  --accent:#ff7b9a;
+  --card-shadow: 0 22px 48px rgba(12,20,40,0.18);
+}
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; }
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--ink);
+  background: url("https://www.transparenttextures.com/patterns/scribble-light.png"),
+              linear-gradient(135deg, #fffaf6 0%, #f6fbff 100%);
+  background-size: auto;
+  background-color: #fffdd0;
+  overflow-y: auto;
+  padding-bottom: 120px;
+  position: relative;
+  -webkit-font-smoothing:antialiased;
+}
+
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:0;
+  filter: blur(40px);
+  opacity:.36;
+  transform: translateZ(0);
+}
+body::before{
+  width:420px; height:420px; left:-8%; top:-6%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,200,200,.55), rgba(255,200,200,0) 40%);
+  animation: floatA 10s linear infinite alternate;
+}
+body::after{
+  width:520px; height:520px; right:-6%; bottom:-8%;
+  background: radial-gradient(circle at 70% 70%, rgba(180,220,255,.45), rgba(180,220,255,0) 40%);
+  animation: floatB 12s linear infinite alternate;
+}
+@keyframes floatA{ to{ transform: translateY(18px) } }
+@keyframes floatB{ to{ transform: translateY(-20px) } }
+
+main#wrap{
+  max-width:920px;
+  margin:48px auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.typewriter{
+  font-family: "Space Mono", monospace;
+  font-size:1.08rem;
+  color:var(--ink);
+  line-height:1.25;
+  pointer-events:none;
+}
+
+.line-left{ margin-top:24px; }
+.line-center{ margin-top:60px; text-align:right; width:100%; white-space:nowrap; }
+.line-center-2{ margin-top:24px; font-weight:500; }
+
+.caret{
+  display:inline-block;
+  width:7px;
+  height:1.1em;
+  background:var(--ink);
+  margin-left:6px;
+  vertical-align:bottom;
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+.hidden{ display:none; }
+
+.paras{ margin-top:48px; }
+.paras .para {
+  background: transparent;   
+  border: none;              
+  box-shadow: none;          
+  backdrop-filter: none;     
+  mix-blend-mode: multiply;   
+  background: none;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+}
+
+.paras .para.revealed{
+  opacity:1;
+  transform: translateY(0);
+}
+
+
+.wish{
+  margin-top:36px;
+  text-align:center;
+  opacity:0;
+  transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s ease;
+  cursor: default;
+}
+.wish.visible{ opacity:1; transform: translateY(0); }
+
+.handwritten{
+  font-family:"Homemade Apple", cursive;
+  font-size: clamp(28px,6vw,48px);
+  margin:0 0 10px;
+  cursor:pointer;
+  display:inline-block;
+  transition: transform 0.34s cubic-bezier(.2,.9,.3,1), text-shadow .34s;
+  will-change: transform;
+  padding:6px 10px;
+  border-radius:10px;
+}
+.handwritten:hover{
+  transform: translateY(-8px) scale(1.04);
+  text-shadow: 0 8px 26px rgba(255,120,150,0.12);
+}
+.wish-sub{
+  margin:0;
+  color:var(--muted);
+  font-size: clamp(18px,3.6vw,28px);
+  font-family:"Homemade Apple", cursive;
+  display:block;
+  margin-top:6px;
+}
+
+.popup{ position: fixed; inset:0; display:grid; place-items:center; background: rgba(10,12,18,0.42); z-index:140; }
+.popup.hidden{ display:none; }
+.popup-inner{
+
+  width: min(1200px,96vw);
+  height: min(800px,90vh);
+  border-radius:24px;
+}
+
+
+
+.close{
+  position:absolute;
+  top:12px; right:12px;
+  width:44px; height:44px;
+  border-radius:50%;
+  background:#ff4c70;
+  color:#fff; border:none; font-size:18px; cursor:pointer;
+  z-index:110;
+  box-shadow:0 8px 22px rgba(0,0,0,.28);
+  transition: transform .18s ease, background .18s ease;
+}
+.close:hover{ transform: scale(1.08); background:#ff6f91; }
+
+
+.board{
+  position:absolute;
+  inset:0;
+  margin:16px;
+  border-radius:12px;
+  background-image: url("https://www.psdgraphics.com/wp-content/uploads/2022/01/white-math-paper-texture.jpg");
+  background-size: cover;
+  overflow: hidden;
+}
+
+
+.paper{
+  position:absolute;
+  width:240px;
+  min-height:160px;
+  border-radius:14px;
+  box-shadow: var(--card-shadow);
+  border:1px solid rgba(0,0,0,.06);
+  padding:12px;
+  cursor:grab;
+  user-select:none;
+  background: linear-gradient(135deg, #ffffff, #fff7f7);
+  transition: box-shadow .15s ease, transform .12s ease;
+  touch-action: none; 
+}
+.paper:active{ cursor:grabbing; box-shadow: 0 34px 70px rgba(12,20,40,0.22); }
+.paper:hover{ transform: translateY(-6px) scale(1.02); }
+.paper {
+  width: 260px;              
+  height: 340px;            
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+}
+.paper.image {
+  justify-content: flex-start; 
+}
+
+.paper.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  max-height: 220px;        
+}
+.paper p {
+  font-family: "Homemade Apple", cursive;
+  font-size: 14px;
+  margin: 5px 0 0;
+  color: #333;
+  line-height: 1.4;
+}
+.paper.heart{ width:110px; height:110px; display:flex; align-items:center; justify-content:center; font-size:34px; background: linear-gradient(135deg,#fff8f6,#ffeef2); }
+.paper.red{ background: linear-gradient(135deg,#fff6f8,#fff1f3); }
+
+@media (max-width:720px){
+  .handwritten{ font-size: clamp(22px,8vw,36px); }
+  .paper{ width:190px; min-height:140px; }
+  .paper.heart{ width:90px; height:90px; font-size:26px; }
+}.banner{
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  background:#ff7b9a;
+  color:#fff;
+  font-family:"Homemade Apple", cursive;
+  padding:10px 30px;
+  border-radius:8px;
+  font-size:22px;
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+  animation: floatBanner 4s ease-in-out infinite alternate;
+}
+@keyframes floatBanner{
+  0%{ transform:translateX(-50%) rotate(-3deg) translateY(0);}
+  100%{ transform:translateX(-50%) rotate(3deg) translateY(12px);}
+}
+
+.board{background: rgba(255, 255, 255, 0.7); 
+  backdrop-filter: blur(15px);          
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  color: #222;
+  animation: subtleMove 12s ease-in-out infinite alternate;
+}
+@keyframes subtleMove{
+  0%{ background-position:0 0;}
+  100%{ background-position:20px 30px;}
+}
+.board img {
+  max-width: 300px;  
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

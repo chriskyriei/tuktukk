@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>tuktukk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="part2.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div id="chat"></div>
+    <div class="typing-indicator" id="typing">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="popup hidden" id="popup">
+    <div class="popup-content">
+      <p class="popup-text">Wanna find out?😭</p>
+      <div class="popup-actions">
+        <button class="btn reject" id="reject">✖</button>
+        <button class="btn accept" id="accept">✔</button>
+      </div>
+    </div>
+  </div>
+
+<div class="popup hidden" id="forcePopup">
+    <div class="popup-content">
+      <p class="popup-text">YOU DON'T GET TO CHOOSE! NOW SAY YES!👇🏻</p>
+      <div class="popup-actions single">
+        <button class="btn accept" id="forceAccept">✔</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="part2.js"></script>
+</body>
+</html>
