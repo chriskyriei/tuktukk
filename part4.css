@@ -56,8 +56,6 @@ body {
 .line:nth-child(3n+2) {
   text-align: right;
 }
-
-/* Comments */
 .comments {
   min-height: 100vh;
   padding: 4rem 2rem;
@@ -203,3 +201,4 @@ button:disabled {
   color: var(--accent);
   letter-spacing: 1px;
 }
+
